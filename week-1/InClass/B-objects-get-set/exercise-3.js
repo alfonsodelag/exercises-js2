@@ -4,6 +4,11 @@
 
 // WRITE CODE HERE
 
+var kitten = {
+    name: "Gilbert",
+    age: 4,
+    color: "white"
+}
 
 console.log(kitten.name);
 

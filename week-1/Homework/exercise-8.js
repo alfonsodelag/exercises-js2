@@ -41,21 +41,21 @@ function removeSkill(mentors,newSkill){
 function addStudentLikes(mentors){
   //your code here
 }
-*/ 
+*/
 
 var mentors = [
   {
     firstName: "Antonio",
     lastName: "Miranda",
-    skills: ["JS","React","Node"],
+    skills: ["JS", "React", "Node"],
     class: "Mar1",
     studentLikes: 0,
     job:
-      {
-        company: "Google",
-        position: "Senior developer",
-        city: "Barcelona"
-      }
+    {
+      company: "Google",
+      position: "Senior developer",
+      city: "Barcelona"
+    }
   },
   {
     firstName: "Leo",
@@ -64,40 +64,138 @@ var mentors = [
     class: "Mar3",
     studentLikes: 0,
     job:
-      {
-        company: "FC Barcelona",
-        position: "Player",
-        city: "Barcelona"
-      }
+    {
+      company: "FC Barcelona",
+      position: "Player",
+      city: "Barcelona"
+    }
   },
   {
     firstName: "John",
     lastName: "VanDamme",
-    skills: ["React","Angular","Python","Node"],
+    skills: ["React", "Angular", "Python", "Node"],
     class: "Mar4",
     studentLikes: 0,
     job:
-      {
-        company: "Facebook",
-        position: "Software Manager",
-        city: "Chicago"
-      }
-  },  
+    {
+      company: "Facebook",
+      position: "Software Manager",
+      city: "Chicago"
+    }
+  },
   {
     firstName: "Giorgio",
     lastName: "Polvara",
-    skills: ["HTML","JS","React"],
+    skills: ["HTML", "JS", "React"],
     class: "Mar2",
     studentLikes: 0,
     job:
-      {
-        company: "Amazon",
-        position: "Senior developer",
-        city: "Barcelona"
-      }
+    {
+      company: "Amazon",
+      position: "Senior developer",
+      city: "Barcelona"
+    }
   },
-
 ];
 
+// let firstMentorSkills = mentors[0].skills;
+// console.log(firstMentorSkills.length);
+
 //YOUR CODE HERE
+// 1. 
+// let barcelonaWorkers = mentors
+//   .filter(mentor => mentor.job.city === "Barcelona" && mentor.skills.includes("React"))
+//   .forEach(mentor => console.log(`Hi, my name is ${mentor.firstName} ${mentor.lastName}. I work in Barcelona and i know React.`))
+
+// // // 2.
+// let barcelonaWorkers2 = mentors.filter(mentor => mentor.job.city === "Barcelona");
+
+// let barcelonaWorkersDateSkills = barcelonaWorkers2.map(mentor => mentor.class);
+
+// barcelonaWorkersDateSkills.push("Jun1")
+
+// let skills = barcelonaWorkers2.flatMap(mentor => mentor.skills);
+// skills.push("SQL")
+
+// console.log("barcelonaWorkersDateSkills", barcelonaWorkersDateSkills)
+// console.log("skills", skills)
+
+// // 3. Create an object method with the name .addSkill() to be able to add skills from it
+mentors.forEach(mentor => {
+  mentor.addSkill = function (newSkill) {
+    mentor.skills.push(newSkill);
+  }
+})
+
+mentors[0].addSkill("PYTHON");
+console.log(mentors[0].skills);
+
+// // ! This adds a skill only to ONE person
+// mentors.forEach(function (mentor) {
+//   mentor.addSkill = function (newSkill) {
+//     this.skills.push(newSkill);
+//   }
+// })
+
+
+// mentors.forEach(function (mentor) {
+//   mentor.removeSkill = function (removeSkill) {
+//     this.skills.pop(removeSkill)
+//   }
+// })
+// // mentors[0].addSkill = "python"
+
+// console.log(mentors)
+
+// // // ! This adds a skill to all people
+// function addSkill(mentors, newSkill) {
+//   mentors.forEach(mentor => mentor.skills.push(newSkill))
+// }
+// addSkill(mentors, "superJavascript")
+
+// function removeSkill(mentors, removeSkill) {
+//   mentors.forEach(mentor => mentor.skills.pop(removeSkill))
+// }
+// removeSkill(mentors, "Node")
+
+// 6. Create a function mentorWithMoreSkills() that returns the name of the mentor with more number of skills
+// function mentorWithMoreSkills(mentors) {
+//   let mostSkilledMentor = undefined;
+//   for (let i = 0; i < mentors.length; i++) {
+//     const mentor = mentors[i];
+//     if (mostSkilledMentor === undefined || (mentor.skills).length > (mostSkilledMentor.skills).length) {
+//       mostSkilledMentor = mentor;
+//     }
+//   }
+//   return mostSkilledMentor.firstName;
+// }
+
+// console.log(mentorWithMoreSkills(mentors));
+
+// 7. Create an object method .addStudentLikes() that increments by one the attribute studentLikes
+// for (let i = 0; i < mentors.length; i++) {
+//   const mentor = mentors[i];
+//   mentor.addStudentLikes = function () {
+//     this.studentLikes += 1;
+//   }
+// }
+
+// mentors[0].addStudentLikes();
+// console.log(mentors[0])
+
+
+// console.log(mentors.addStudentLikes(mentors));
+// console.log(mentors);
+
+// 8. Create a function that adds a student like to all mentors in the array
+
+// function addToAllMentors(mentors) {
+//   for (let i = 0; i < mentors.length; i++) {
+//     const mentor = mentors[i];
+//     mentor.addStudentLikes()
+//   }
+// }
+
+// addToAllMentors(mentors);
+// console.log(mentors);
 

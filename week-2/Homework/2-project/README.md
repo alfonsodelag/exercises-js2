@@ -39,7 +39,7 @@ When the submit button is pressed, it should check that all the form fields are 
 - The **Your name**, **Email** and **Describe yourself** fields need to be non-empty (Hint: their `value` length has to be greater than zero)
 - For the **Email** field also check if it contains the `@` character
 
-For all the fields that invalid, it should make their background color `red`.
+For all the fields that are invalid, it should make their background color `red` // DONE!!!!!
 IF all the fields are valid, when you click **Submit** it should:
 
 - Display an alert to thank you for filling out the form

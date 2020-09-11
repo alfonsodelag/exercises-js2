@@ -41,50 +41,98 @@ var product2 = {
   price: 9.99,
   stock: 2
 };
+var product3 = {
+  id: 3,
+  name: "Laptop",
+  price: 100,
+  stock: 5
+}
+
+var product4 = {
+  id: 4,
+  name: "Iphone",
+  price: 400,
+  stock: 5
+}
+
 
 products.push(product1);
 products.push(product2);
+products.push(product3);
+products.push(product4);
+
 
 var shoppingCart = {
   totalPrice: 0,
   selectedProducts: []
 };
 
-function addToShoppingCart(id){
-
+// 3. Create a function addToShoppingCart to add a product to the shopping cart list giving the product id,
+// the function will add the product to the selectedProduct list, and add the price to the totalPrice
+function addToShoppingCart(id) {
+  let addedProduct = products.find(product => product.id === id);
+  shoppingCart.selectedProducts.push(addedProduct);
+  shoppingCart.totalPrice += addedProduct.price;
 }
 
-function removeFromShoppingCart(id){
-
+function removeFromShoppingCart(id) {
+  let indexOfProduct = shoppingCart.selectedProducts.findIndex(product => product.id === id);
+  if (indexOfProduct === -1) {
+    console.log("This product is not in the shopping cart")
+  } else {
+    let [deletedProduct] = shoppingCart.selectedProducts.splice(indexOfProduct, 1); // ! Se utilizan los brackets para obtener el objeto "deletedProduct"
+    shoppingCart.totalPrice -= deletedProduct.price;
+  }
+}
+// 5. Create the function shop, the function will empty the list and set 0 in the totalPrice of the shopping cart
+// In addition will substract 1 in the product stock of bought products
+function shop() {
+  shoppingCart.selectedProducts.forEach(selectedProduct => selectedProduct.stock--)
+  shoppingCart.totalPrice = 0;
+  shoppingCart.selectedProducts = []
 }
 
-function shop(){
+// ! Deberia haber un IF que compare el ID de los productos con el ID de los productos del Shopping Cart.
+// ! Shop debe SUBSTRAER: El stock de los products filtrado por ID MENOS los productos comprados por ID
 
-}
-
-//results
 addToShoppingCart(1);
 console.log("Step 1");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+
 addToShoppingCart(2);
 console.log("Step 2");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
-addToShoppingCart(4);
-console.log("Step 3");
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+
+addToShoppingCart(2);
+console.log("Step 2");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+
+addToShoppingCart(1);
+console.log("Step 2");
+console.log("Total Price = " + shoppingCart.totalPrice);
+console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+
 removeFromShoppingCart(2);
 console.log("Step 4");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+
+// let SelectedProductsFromShoppingCartById = shoppingCart.selectedProducts;
+// SelectedProductsFromShoppingCartById.map(product => product.id);
+// console.log("SelectedProductsFromShoppingCartById !!", SelectedProductsFromShoppingCartById);
+
 shop();
 console.log("Step 5");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+console.log("Products", products)
+
