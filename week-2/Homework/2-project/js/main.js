@@ -47,24 +47,22 @@ greenBtn.addEventListener("click", greenBtnChangeColors)
 let submitBtn = document.querySelectorAll("form button")[0]
 
 function formValidation(e) {
+    e.preventDefault();
     let form = document.forms[0]
-    console.log(form)
-
-    e.preventDefault;
     let yourName = document.getElementById('exampleInputEmail1');
     let email = document.getElementById('example-text-input');
     let describeYourself = document.getElementById('exampleTextarea');
 
-    if (!yourName.value.length > 0) {
+    if (yourName.value.length <= 0) {
         yourName.style.backgroundColor = "red"
     }
-    if (!email.value.length > 0) {
+    if (email.value.length <= 0) {
         email.style.backgroundColor = "red"
     }
     if (!email.value.includes('@')) {
         console.log("You need to include the @")
     }
-    if (!describeYourself.value.length > 0) {
+    if (describeYourself.value.length <= 0) {
         describeYourself.style.backgroundColor = "red"
     }
     if (yourName.value.length > 0 && email.value.length > 0 && describeYourself.value.length > 0) {
@@ -74,4 +72,4 @@ function formValidation(e) {
 }
 
 submitBtn.addEventListener("click", formValidation)
-
+submitBtn.addEventListener("click", (event) => formValidation(event))

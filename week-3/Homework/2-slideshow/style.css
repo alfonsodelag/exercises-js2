@@ -1,1 +1,10 @@
 /** Write your CSS in here **/
+#container {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+img {
+    height: 500px;
+    width: 550px;
+}

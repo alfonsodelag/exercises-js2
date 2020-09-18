@@ -1,13 +1,11 @@
 /*
 ================
 You are given the following list of movies
-
 Task 1
 Create a function called "showMovies" that
 - iterates through the "movies" array and
 - for each movie, it creates a <p> element with the movie title and director and append it to the #all-movies div.
 - it sets the innerText of the #movies-number element to the total number of the movies in the array "movies"
-
 Task 2
 Amend your function above to only show movies after 1 second. Remember to use setTimeout to achieve that
 Create a new function called "addMovie"
@@ -15,11 +13,9 @@ Create a new function called "addMovie"
 - it adds the new movie to the list of movies after 2 seconds. Remember to setTimeout to achieve that
 Call addMovies to add the new movie to the list and then showMovies to see the movies added on the screen.
 How many movies can you see on your page?
-
 Task 3
 Can you make sure the new movie you just added is showing on the screen? 
 TIP: use callbacks
-
 Task 4
 Create a form anywhere on your page. The form should have
 - 4 input text fields, one for each property of your movie object
@@ -28,7 +24,6 @@ When the button is clicked
 - The field values should be used to create a new movie object literal
 - The new movie is then added to the list of movies and gets displayed on your page
 TIP: Use the functions you created on tasks 1-3
-
 ================
 */
 var movies = [
@@ -59,9 +54,77 @@ var movies = [
 ];
 
 // create showMovies function
+function showMovies() {
+  const allMovies = document.getElementById('all-movies')
+  movies.forEach(movie => {
+    const paragragh = document.createElement('p')
+    paragragh.innerText = `${movie.title} - ${movie.director}`
+    paragragh.classList = 'movie' // Agregamos la clase "movie" para poder borrarlo después
+    allMovies.appendChild(paragragh)
+  })
+  const moviesNumber = document.getElementById('movies-number')
+  moviesNumber.innerText = movies.length
+}
+setTimeout(showMovies, 1000) // Se ejecuta primero
 
+// How many movies can you see on your page?
 
-// create a new movie object for your favorite movie
-
+var myMovies = [
+  {
+    title: 'Matrix',
+    director: 'Wakowski Sisters',
+    type: 'Sci Fi',
+    haveWatched: true
+  },
+  {
+    title: 'Titanic',
+    director: 'James Cameron',
+    type: 'Drama',
+    haveWatched: false
+  },
+  {
+    title: 'Joker',
+    director: 'Todd Phillips',
+    type: 'Comedy',
+    haveWatched: true
+  }
+]
 
 // create addMovies function
+function addMovies(movie) {
+  document.querySelectorAll('p.movie').forEach(p => p.remove())
+  movies.push(movie)
+  setTimeout(showMovies, 1000) // se ejecuta tercero
+}
+
+// TASK 3
+setTimeout(() => addMovies(myMovies[0]), 2000) // se ejecuta segundo
+
+// TASK 4
+
+// Create a form anywhere on your page. The form should have
+// - a "save" button.
+// When the button is clicked
+// - The field values should be used to create a new movie object literal
+// - The new movie is then added to the list of movies and gets displayed on your page
+// TIP: Use the functions you created on tasks 1-3
+function createMovieObject(title, director, type, haveWatched) {
+  const movie = {
+    title: title,
+    director: director,
+    type: type,
+    haveWatched: haveWatched
+  }
+  return movie
+}
+
+document.getElementById('save').addEventListener('click', event => {
+  event.preventDefault()
+  const title = document.getElementById('input-title').value
+  const director = document.getElementById('input-director').value
+  const type = document.getElementById('input-type').value
+  const haveWatched = document.getElementById('input-watched').checked
+
+  const newMovie = createMovieObject(title, director, type, haveWatched)
+  addMovies(newMovie)
+})
